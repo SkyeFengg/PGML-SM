@@ -133,5 +133,5 @@ for i in range(0,len(metrics)):
     plt.title(fig_label[i],fontsize=10, color='black', bbox=dict(facecolor='none', edgecolor='none'))
     plt.tight_layout()
     # plt.show()
-    plt.savefig(path_sv + f"4_{i+1}_pixel_{metric}_boxplot.png", dpi=600)
+    plt.savefig(path_sv + f"fig4_{i+1}_pixel_{metric}_boxplot.png", dpi=600)
     plt.close()
