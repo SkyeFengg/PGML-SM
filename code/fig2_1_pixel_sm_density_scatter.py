@@ -2,12 +2,8 @@
 
 import os
 import pandas as pd
-import netCDF4 as nc
 import numpy as np
 import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
-import matplotlib.colors as mcolors
 from sklearn.metrics import mean_squared_error
 from scipy.stats import pearsonr
 
@@ -21,17 +17,18 @@ def metric(y_predict, y):
 
 # data path
 path_base = r'C:\Users\au783073\OneDrive - Aarhus universitet\Desktop\Scientific_data\Github' + os.sep
-path1 =  path_base + 'data//fig2//'
-path_sv = path_base + 'fig'
+path = path_base + 'data//fig2//'
+path_sv = path_base + 'fig//'
 
 # metrics
-sm_all = pd.read_csv(path1 + 'random_cv_results.csv')
+sm_all = pd.read_csv(path + '5fold_cv_results.csv')
 valid_number = sm_all.shape[0]
+
 # figure 1
 # scatter density
 # PGML
 x = sm_all["observation"]
-y = sm_all["prediction"]
+y = sm_all["y_pred"]
 
 plt.figure(figsize=(3.7, 3))
 plt.subplots_adjust(bottom = 0.145, left = 0.149)
@@ -52,8 +49,8 @@ plt.text(0.01, 0.58, f"n = {int(valid_number):,}\n$R$={r:.3f}\nBias={bias:.3f}\n
              fontsize=9, color='black', bbox=dict(facecolor='none', edgecolor='none'))
 plt.title(f"(a) Out of sample validation", fontsize=10, color='black', bbox=dict(facecolor='none', edgecolor='none'))
 
-plt.show()
-# plt.savefig(path_sv + f"2_1_pgml_sm_all_scatter.png", dpi=300)
-# plt.close()
+# plt.show()
+plt.savefig(path_sv + f"fig2_1_pgml_sm_scatter_5cv.png", dpi=300)
+plt.close()
 
 

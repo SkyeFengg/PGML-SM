@@ -1,19 +1,15 @@
 # Hovmöller diagrams
 
 import os
-import netCDF4 as nc
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import matplotlib.colors as mcolors
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 from datetime import datetime
 
 # set path
 path_base = r'C:\Users\au783073\OneDrive - Aarhus universitet\Desktop\Scientific_data\Github' + os.sep
 path1 =  path_base + 'data//fig6//'
-path_sv = path_base + 'fig'
+path_sv = path_base + 'fig//'
 
 # get sm averaged data
 files = sorted([f for f in os.listdir(path1) if f.endswith("lat_monthly.npz")])
@@ -46,14 +42,12 @@ for i, ax in enumerate(axes.flat):
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%b%Y'))
     ax.set_title(fig_label[i], fontsize=10, color='black')
 
-    # ax.text(mdates.date2num(datetime(2015, 6, 1)), 85, fig_label[i], fontsize=10, color='black', bbox=dict(facecolor='none', edgecolor='none'))
-
 # colorbar
 cbar = fig.colorbar(mesh, ax=axes.ravel().tolist(), orientation='horizontal', pad=0.01, aspect=50,shrink=0.7)
 cbar.set_label("SM ($m^3$/$m^3$)", fontsize=10)
 cbar.ax.tick_params(labelsize=10)
 cbar.set_ticks(np.arange(0, 0.51, 0.1))
-plt.show()
+# plt.show()
 # save
-# plt.savefig(path_sv + f"2_1_sm_change_lat_time.png", dpi=600)
-# plt.close()
+plt.savefig(path_sv + f"fig6_sm_valid_lat_time.png", dpi=300)
+plt.close()

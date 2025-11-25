@@ -4,16 +4,12 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
-import matplotlib.colors as mcolors
 import seaborn as sns
-from scipy.stats import alpha
 
 # data path
 path_base = r'C:\Users\au783073\OneDrive - Aarhus universitet\Desktop\Scientific_data\Github' + os.sep
-path1 =  path_base + 'data//fig4//'
-path_sv = path_base + 'fig'
+path1 =  path_base + 'data//fig3+4//'
+path_sv = path_base + 'fig//'
 
 # figure 1
 # 1 metrics for 6 product
@@ -33,8 +29,8 @@ sm_colors = {
 }
 group_color = ['#FF1030','#2BBF62','#1F3FD2','#00BFFF','#A22BB9','#E69500']
 
-y_min = [0,-0.21,0,0]
-y_max = [1.5,0.35,0.35,0.13]
+y_min = [0,-0.21,0.01,0.01]
+y_max = [1.1,0.38,0.38,0.14]
 y_tick = [np.arange(0.3, 1, 0.3),np.arange(-0.2, 0.4, 0.2),np.arange(0, 0.41, 0.1),np.arange(0, 0.21, 0.05)]
 
 land_cover_map = {
@@ -52,14 +48,14 @@ land_cover_map = {
     # 11: "PWL",
     12: "CRL",
     # 13: "URB",
-    14: "CRM",
+    # 14: "CRM",
     # 15: "SNI",
-    # 16: "BSV" # (<3)
+    16: "BSV"
 }
 
 for i in range(0,len(metrics)):
     metric = metrics[i]
-    dataset = pd.read_csv(path1 + 'insitu_pixel_' + metric + '.csv')
+    dataset = pd.read_csv(path1 + 'insitu_pixel_daily_' + metric + '.csv')
     dataset = dataset.dropna()
     dataset = dataset.reset_index(drop=True)
     valid_site = dataset.shape[0]
@@ -108,21 +104,34 @@ for i in range(0,len(metrics)):
     for n, handle in enumerate(handles):
         handle.set_edgecolor(sm_colors[labels[n]])
 
-    ax.legend(handles=handles,labels=legend_label,loc='upper center', fontsize=10,
-              frameon=False,facecolor='none',ncol=6)
-    # ax.legend().set_visible(False)
+    ax.legend().set_visible(False)
+
     ticks_labels = [f"{lc}\n(n={counts.get(lc, 0)})" for lc in land_cover_unique]
-    plt.xticks(ticks=range(len(land_cover_unique)), labels=ticks_labels,fontsize=10)
+    plt.xticks(ticks = range(len(land_cover_unique)), labels = ticks_labels, fontsize = 10)
     plt.xlabel("IGBP land cover types")
+
+    # if i==0:
+    #     ax.legend(handles=handles,labels=legend_label,loc='lower center', bbox_to_anchor=(0.5, 1.15), fontsize=10,
+    #               frameon=False,facecolor='none',ncol=6)
+    # else:
+    #     ax.legend().set_visible(False)
+
+    # if i ==3:
+        # ax.legend().set_visible(False)
+        # ticks_labels = [f"{lc}\n(n={counts.get(lc, 0)})" for lc in land_cover_unique]
+        # plt.xticks(ticks=range(len(land_cover_unique)), labels=ticks_labels,fontsize=10)
+        # plt.xlabel("IGBP land cover types")
+    # else:
+    #     ax.set_xticks(range(len(land_cover_unique)))
+    #     ax.set_xticklabels([])
+    #     ax.set_xlabel("")
+
 
     plt.ylabel(metric_label[i],fontsize=10)
     plt.yticks(y_tick[i], fontsize=10)
     plt.ylim(y_min[i], y_max[i])
     plt.title(fig_label[i],fontsize=10, color='black', bbox=dict(facecolor='none', edgecolor='none'))
     plt.tight_layout()
-    plt.show()
-    # plt.savefig(path_sv + f"5_{i+1}_pixel_{metric}_boxplot.png", dpi=300)
-    # plt.close()
-
-
-
+    # plt.show()
+    plt.savefig(path_sv + f"4_{i+1}_pixel_{metric}_boxplot.png", dpi=600)
+    plt.close()

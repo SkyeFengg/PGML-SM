@@ -20,11 +20,11 @@ def metric(y_predict, y):
 
 # data path
 path_base = r'C:\Users\au783073\OneDrive - Aarhus universitet\Desktop\Scientific_data\Github' + os.sep
-path1 =  path_base + 'data//fig3//'
+path1 =  path_base + 'data//fig3+4//'
 path_sv = path_base + 'fig'
 
 # metrics
-sm_all = pd.read_csv(path1 + 'insitu_pixel_sm_all.csv')
+sm_all = pd.read_csv(path1 + 'insitu_pixel_daily_sm.csv')
 
 # figure 1
 # scatter density
@@ -72,7 +72,7 @@ cbar.set_label("Sample size", fontsize=10)
 cbar.ax.tick_params(labelsize=10)
 
 # save
-plt.show()
-# plt.savefig(path_sv + f"3_1_pixel_sm_scatter_density.png", dpi=300)
-# plt.close()
+# plt.show()
+plt.savefig(path_sv + f"3_pixel_sm_scatter_density.png", dpi=300)
+plt.close()
 

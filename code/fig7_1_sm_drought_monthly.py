@@ -20,7 +20,7 @@ def nc_variable_value(file_name,variable_name):
 # set path
 path_base = r'C:\Users\au783073\OneDrive - Aarhus universitet\Desktop\Scientific_data\Github' + os.sep
 path1 =  path_base + 'data//fig7//'
-path_sv = path_base + 'fig'
+path_sv = path_base + 'fig//'
 
 # monthly files
 files1 = sorted([f for f in os.listdir(path1) if f.startswith("pgml_sm_2018")])
@@ -34,8 +34,8 @@ lon1 = nc_variable_value(path1+files1[0], "lon_center")
 lat2 = nc_variable_value(path1+files2[0], "lat_center")
 lon2 = nc_variable_value(path1+files2[0], "lon_center")
 
-lat_all = [52.19, 55.92, 52.34]
-lon_all = [6.42, 8.91, 0.80]
+lat_all = [52.39, 56.04, 52.34]
+lon_all = [6.96, 9.19, 0.80]
 
 
 # plot
@@ -109,7 +109,7 @@ for i, ax in enumerate(axes.flat):
     ax.set_title(f"{fig_label[i]}", fontsize=10, color='black', bbox=dict(facecolor='none', edgecolor='none'))
 
 
-plt.show()
+# plt.show()
 # save
-# plt.savefig(path_sv + f"7_pgml_sm_anomaly.png", dpi=300)
-# plt.close()
+plt.savefig(path_sv + f"fig7_pgml_sm_anomaly.png", dpi=300)
+plt.close()

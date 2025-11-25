@@ -19,7 +19,7 @@ def nc_variable_value(file_name,variable_name):
 # set path
 path_base = r'C:\Users\au783073\OneDrive - Aarhus universitet\Desktop\Scientific_data\Github' + os.sep
 path1 =  path_base + 'data//fig5//'
-path_sv = path_base + 'fig'
+path_sv = path_base + 'fig//'
 
 # get sm averaged data
 files = sorted([f for f in os.listdir(path1) if f.endswith("sm_1523.nc")])
@@ -63,7 +63,7 @@ cbar = fig.colorbar(mesh, ax=axes.ravel().tolist(), orientation='horizontal', pa
 cbar.set_label("SM ($m^3$/$m^3$)", fontsize=10)
 cbar.ax.tick_params(labelsize=10)
 cbar.set_ticks(np.arange(0, 0.61, 0.1))
-plt.show()
+# plt.show()
 # save
-# plt.savefig(path_sv + f"1_1_sm_annual_average_1523.png", dpi=300)
-# plt.close()
+plt.savefig(path_sv + f"fig5_sm_annual_average.png", dpi=300)
+plt.close()
