@@ -1,4 +1,5 @@
-# pixel scale density scatter
+# Figure 2
+# pixel scale scatter density plot
 
 import os
 import pandas as pd
